@@ -1,10 +1,6 @@
 import Head from "next/head";
-import Image from "next/image";
 import { Space_Grotesk } from "next/font/google";
-import styles from "@/styles/Home.module.css";
-import "@/styles/Home.module.css";
 
-import { useState } from "react";
 import Navbar from "@/components/Navbar/Navbar";
 import HeroSection from "@/components/HeroSection/HeroSection";
 import Card from "@/components/Card/Card";
@@ -169,7 +165,7 @@ export default function Home() {
               </p>
             </header>
             <form
-              action=""
+              method="POST"
               className="container container--column form--contact"
             >
               <Input type="text" id="name" placeholder="NAME" />
