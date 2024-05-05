@@ -1,11 +1,111 @@
 import Head from "next/head";
 import Image from "next/image";
-import { Inter } from "next/font/google";
+import { Space_Grotesk } from "next/font/google";
 import styles from "@/styles/Home.module.css";
+import "@/styles/Home.module.css";
 
-const inter = Inter({ subsets: ["latin"] });
+import { useState } from "react";
+import Navbar from "@/components/Navbar/Navbar";
+import HeroSection from "@/components/HeroSection/HeroSection";
+import Card from "@/components/Card/Card";
+import Skill from "@/components/Skill/Skill";
+import Button from "@/components/Button/Button";
+import Decoration from "@/components/Decoration/Decoration";
+import { Input } from "@/components/Input/Input";
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["500", "700"],
+});
 
 export default function Home() {
+  const skills = [
+    {
+      skill: "HTML",
+      experience: "4 Years Experience",
+    },
+    {
+      skill: "CSS",
+      experience: "4 Years Experience",
+    },
+    {
+      skill: "Javascript",
+      experience: "4 Years Experience",
+    },
+    {
+      skill: "Accessibility",
+      experience: "4 Years Experience",
+    },
+    {
+      skill: "React",
+      experience: "3 Years Experience",
+    },
+    {
+      skill: "Sass",
+      experience: "3 Years Experience",
+    },
+  ] as {
+    skill: string;
+    experience: string;
+  }[];
+
+  const projectCards = [
+    {
+      id: 1,
+      title: "DESIGN PORTFOLIO",
+      tags: ["HTML", "CSS"],
+      images: {
+        large: "/assets/images/thumbnail-project-1-large.webp",
+        small: "/assets/images/thumbnail-project-1-small.webp",
+      },
+    },
+    {
+      id: 2,
+      title: "E-LEARNING LANDING PAGE",
+      tags: ["HTML", "CSS"],
+      images: {
+        large: "/assets/images/thumbnail-project-2-large.webp",
+        small: "/assets/images/thumbnail-project-2-small.webp",
+      },
+    },
+    {
+      id: 3,
+      title: "TODO WEB APP",
+      tags: ["HTML", "CSS", "javascript"],
+      images: {
+        large: "/assets/images/thumbnail-project-3-large.webp",
+        small: "/assets/images/thumbnail-project-3-small.webp",
+      },
+    },
+    {
+      id: 4,
+      title: "ENTERTAINMENT WEB APP",
+      tags: ["HTML", "CSS", "javascript"],
+      images: {
+        large: "/assets/images/thumbnail-project-4-large.webp",
+        small: "/assets/images/thumbnail-project-4-small.webp",
+      },
+    },
+    {
+      id: 5,
+      title: "MEMORY GAMEO",
+      tags: ["HTML", "CSS", "Javascript"],
+      images: {
+        large: "/assets/images/thumbnail-project-5-large.webp",
+        small: "/assets/images/thumbnail-project-5-small.webp",
+      },
+    },
+    {
+      id: 6,
+      title: "ART GALLERY SHOWCASE",
+      tags: ["HTML", "CSS", "javascript"],
+      images: {
+        large: "/assets/images/thumbnail-project-6-large.webp",
+        small: "/assets/images/thumbnail-project-6-small.webp",
+      },
+    },
+  ];
+
   return (
     <>
       <Head>
@@ -14,101 +114,79 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={`${styles.main} ${inter.className}`}>
-        <div className={styles.description}>
-          <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>src/pages/index.tsx</code>
-          </p>
-          <div>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
+
+      <header className="header">
+        <Navbar navbarPosition="header"></Navbar>
+      </header>
+      <main className={"main"}>
+        <HeroSection />
+
+        <section className="section section--skills">
+          <ul className="container skill-list">
+            {skills.map((skill, index) => {
+              return (
+                <li className="skill-list__item" key={skill + index.toString()}>
+                  <Skill skill={skill.skill} experience={skill.experience} />
+                </li>
+              );
+            })}
+          </ul>
+          <Decoration image="rings" position={"bottom-right"} />
+        </section>
+
+        <section className="section section--projects">
+          <header className="section__header container">
+            <h2 className="title">Projects</h2>
+            <Button text="CONTACT ME" link="" />
+          </header>
+
+          <ul className="main container projects">
+            {projectCards.map((card) => {
+              return (
+                <li className="projects__item" key={card.id}>
+                  <Card
+                    imageLarge={card.images.large}
+                    imageSmall={card.images.small}
+                    id={String(card.id)}
+                    title={card.title}
+                    tags={card.tags}
+                  />
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+
+        <section className="section section--contact">
+          <Decoration image="rings" position={"bottom-left"} />
+          <div className="container">
+            <header className="section__header container container--column ">
+              <h2 className="title">Contact</h2>
+              <p className="content">
+                I would love to hear about your project and how I could help.
+                Please fill in the form, and I’ll get back to you as soon as
+                possible.
+              </p>
+            </header>
+            <form
+              action=""
+              className="container container--column form--contact"
             >
-              By{" "}
-              <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                className={styles.vercelLogo}
-                width={100}
-                height={24}
-                priority
-              />
-            </a>
+              <Input type="text" id="name" placeholder="NAME" />
+              <Input type="email" id="email" placeholder="EMAIL" />
+              <Input type="textarea" id="message" placeholder="message" />
+
+              <button type="submit" className="submit-btn">
+                send message
+              </button>
+            </form>
           </div>
-        </div>
-
-        <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
-        </div>
-
-        <div className={styles.grid}>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Docs <span>-&gt;</span>
-            </h2>
-            <p>
-              Find in-depth information about Next.js features and&nbsp;API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Learn <span>-&gt;</span>
-            </h2>
-            <p>
-              Learn about Next.js in an interactive course with&nbsp;quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Templates <span>-&gt;</span>
-            </h2>
-            <p>
-              Discover and deploy boilerplate example Next.js&nbsp;projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Deploy <span>-&gt;</span>
-            </h2>
-            <p>
-              Instantly deploy your Next.js site to a shareable URL
-              with&nbsp;Vercel.
-            </p>
-          </a>
-        </div>
+        </section>
       </main>
+
+      <footer className="footer">
+        <Navbar navbarPosition="footer"></Navbar>
+      </footer>
     </>
   );
 }

@@ -1,0 +1,4 @@
+.section__header .title {
+  font-size: var(--heading-xl);
+  color: var(--white);
+}

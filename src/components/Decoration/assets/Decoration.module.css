@@ -1,0 +1,43 @@
+.decoration {
+  position: absolute;
+  left: calc((-165 / 1440) * 100vw);
+  top: 0;
+  height: 129px;
+  width: 530px;
+}
+
+.decoration.decoration--circle {
+  height: 129px;
+  width: 129px;
+  top: auto;
+  bottom: 70px;
+  left: calc(-129px / 2);
+}
+
+.decoration.decoration--bottom-right {
+  left: auto;
+  top: auto;
+  right: calc((-530px / 2));
+  bottom: 0;
+}
+
+.decoration.decoration--bottom-left {
+  top: auto;
+  bottom: 47px;
+}
+
+@media all and (max-width: 820px) {
+  .decoration {
+    left: calc(530px / (-2));
+  }
+
+  .decoration.decoration--circle {
+    top: auto;
+    bottom: 0;
+    left: auto;
+    right: calc(-129px / 2);
+  }
+}
+
+@media all and (max-width: 640px) {
+}
