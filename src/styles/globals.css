@@ -237,9 +237,10 @@ body {
   width: 100%;
   fill: #fff;
   transition: fill 300ms;
-  &:hover {
-    fill: var(--primary);
-  }
+}
+
+.icon:hover {
+  fill: var(--primary);
 }
 
 @media all and (max-width: 1131px) {
@@ -250,7 +251,7 @@ body {
 
   .section--hero {
     margin-top: 25px;
-    padding-top: cacl(90px - 25px);
+    padding-top: calc(90px - 25px);
     padding-bottom: 65px;
     overflow-x: hidden;
   }
