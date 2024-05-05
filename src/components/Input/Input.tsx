@@ -11,9 +11,6 @@ export const Input = (props: Props) => {
   const [isError, setIsError] = useState(false);
   const [input, setInput] = useState("");
 
-  console.log(input);
-  console.log(isError);
-
   useEffect(() => {
     if (props.id === "email") {
       const emailRegex =
